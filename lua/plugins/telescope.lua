@@ -10,6 +10,7 @@ return {
       { "<leader>fs", "<cmd> Telescope git_status <CR>", desc = "Find git files changes" },
       { "<leader>gs", false},
       { "<leader>/", false },
+      { "<leader>fr", "<cmd> Telescope resume <CR>", desc = "Resume search" },
     },
   },
 }
