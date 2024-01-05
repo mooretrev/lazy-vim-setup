@@ -35,8 +35,6 @@ return {
         -- ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^                                       ^^^^^^^^^^^^^^
 
         local path_to_jdtls = path_to_mason_packages .. "/jdtls"
-        local path_to_jdebug = path_to_mason_packages .. "/java-debug-adapter"
-        local path_to_jtest = path_to_mason_packages .. "/java-test"
 
         local path_to_config = path_to_jdtls .. "/config_mac"
         local lombok_path = path_to_jdtls .. "/lombok.jar"
@@ -116,10 +114,10 @@ return {
                   name = "JavaSE-11",
                   path = "/Users/tmoore/.sdkman/candidates/java/11.0.21-zulu/zulu-11.jdk/Contents/Home",
                 },
-              --   {
-              --     name = "JavaSE-17",
-              --     path = "/Users/tmoore/.sdkman/candidates/java/17.0.9-zulu/zulu-17.jdk/Contents/Home",
-              --   },
+                --   {
+                --     name = "JavaSE-17",
+                --     path = "/Users/tmoore/.sdkman/candidates/java/17.0.9-zulu/zulu-17.jdk/Contents/Home",
+                --   },
               },
             },
           },
@@ -127,7 +125,14 @@ return {
       },
 
       -- These depend on nvim-dap, but can additionally be disabled by setting false here.
-      dap = { hotcodereplace = "auto", config_overrides = {} },
+      dap = {
+        hotcodereplace = "auto",
+        config_overrides = {
+          -- useful cammand here
+          -- lua require("jdtls.dap").setup_dap_main_class_configs( { config_overrides = { args = function() return vim.fn.input("Args: ") end } })
+          args = "server gso-service/gso-service.yml",
+       },
+      },
       test = true,
     }
   end,
