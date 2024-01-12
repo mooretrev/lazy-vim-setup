@@ -6,7 +6,7 @@ return {
     harpoon:setup({ settings = { sync_on_ui_close = true } })
     return {
       {
-        "<C-h>",
+        "<C-e>",
         function()
           harpoon.ui:toggle_quick_menu(harpoon:list())
         end,
@@ -20,14 +20,14 @@ return {
         desc = "Add harpoon",
       },
       {
-        "<leader>h",
+        "<C-h>",
         function()
           harpoon:list():select(1)
         end,
         desc = "Harpoon first",
       },
       {
-        "<leader>j",
+        "<C-j>",
         function()
           harpoon:list():select(2)
         end,
@@ -35,27 +35,28 @@ return {
       },
       {
         "<leader>k",
+        "<C-u>",
         function()
           harpoon:list():select(3)
         end,
         desc = "Harpoon thrid",
       },
       {
-        "<leader>l",
+        "<C-y>",
         function()
           harpoon:list():select(4)
         end,
         desc = "Harpoon fourth",
       },
       {
-        "<leader>n",
+        "<C-n>",
         function()
           harpoon:list():next({ ui_nav_wrap = true })
         end,
         desc = "Harpoon next",
       },
       {
-        "<leader>p",
+        "<C-m>",
         function()
           harpoon:list():prev({ ui_nav_wrap = true })
         end,
