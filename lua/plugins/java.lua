@@ -36,7 +36,7 @@ return {
 
         local path_to_jdtls = path_to_mason_packages .. "/jdtls"
 
-        local path_to_config = path_to_jdtls .. "/config_mac"
+        local path_to_config = path_to_jdtls .. "/config_mac_arm"
         local lombok_path = path_to_jdtls .. "/lombok.jar"
 
         -- 💀
@@ -86,7 +86,7 @@ return {
       jdtls = {
         settings = {
           java = {
-            path = "/Users/tmoore/.sdkman/candidates/java/11.0.21-zulu/zulu-11.jdk/Contents/Home",
+            -- path = "/Users/tmoore/.sdkman/candidates/java/11.0.21-zulu/zulu-11.jdk/Contents/Home",
 
             eclipse = {
               downloadSources = true,
@@ -114,10 +114,10 @@ return {
                   name = "JavaSE-11",
                   path = "/Users/tmoore/.sdkman/candidates/java/11.0.21-zulu/zulu-11.jdk/Contents/Home",
                 },
-                --   {
-                --     name = "JavaSE-17",
-                --     path = "/Users/tmoore/.sdkman/candidates/java/17.0.9-zulu/zulu-17.jdk/Contents/Home",
-                --   },
+                {
+                  name = "JavaSE-17",
+                  path = "/Users/tmoore/.sdkman/candidates/java/17.0.9-zulu/zulu-17.jdk/Contents/Home",
+                },
               },
             },
           },
@@ -131,7 +131,7 @@ return {
           -- useful cammand here
           -- lua require("jdtls.dap").setup_dap_main_class_configs( { config_overrides = { args = function() return vim.fn.input("Args: ") end } })
           args = "server gso-service/gso-service.yml",
-       },
+        },
       },
       test = true,
     }
