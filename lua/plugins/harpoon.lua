@@ -20,21 +20,20 @@ return {
         desc = "Add harpoon",
       },
       {
-        "<C-h>",
+        "<C-n>",
         function()
           harpoon:list():select(1)
         end,
         desc = "Harpoon first",
       },
       {
-        "<C-j>",
+        "<C-m>",
         function()
           harpoon:list():select(2)
         end,
         desc = "Harpoon second",
       },
       {
-        "<leader>k",
         "<C-u>",
         function()
           harpoon:list():select(3)
@@ -49,14 +48,14 @@ return {
         desc = "Harpoon fourth",
       },
       {
-        "<C-n>",
+        "<leader>n",
         function()
           harpoon:list():next({ ui_nav_wrap = true })
         end,
         desc = "Harpoon next",
       },
       {
-        "<C-m>",
+        "<leader>p",
         function()
           harpoon:list():prev({ ui_nav_wrap = true })
         end,
