@@ -131,7 +131,7 @@ return {
         config_overrides = {
           -- useful cammand here
           -- lua require("jdtls.dap").setup_dap_main_class_configs( { config_overrides = { args = function() return vim.fn.input("Args: ") end } })
-          args = "server gso-service/gso-service.yml",
+          args = "server gso-service/gso-service-oracle-xe.yml",
         },
       },
       test = true,
