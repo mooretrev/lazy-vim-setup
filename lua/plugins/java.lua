@@ -46,7 +46,7 @@ return {
         return {
           --
           -- 				-- 💀
-          "/Users/tmoore/.sdkman/candidates/java/17.0.9-zulu/bin/java", -- or '/path/to/java17_or_newer/bin/java'
+          "/Users/tmoore/.sdkman/candidates/java/17.0.9.fx-zulu/zulu-17.jdk/Contents/Home/bin/java", -- or '/path/to/java17_or_newer/bin/java'
           -- depends on if `java` is in your $PATH env variable and if it points to the right version.
 
           "-Declipse.application=org.eclipse.jdt.ls.core.id1",
@@ -86,7 +86,8 @@ return {
       jdtls = {
         settings = {
           java = {
-            -- path = "/Users/tmoore/.sdkman/candidates/java/11.0.21-zulu/zulu-11.jdk/Contents/Home",
+            home = "/Users/tmoore/.sdkman/candidates/java/11.0.21-zulu/zulu-11.jdk/Contents/Home",
+            -- path = "/Users/tmoore/.sdkman/candidates/java/11.0.21-zulu/zulu-11.jdk",
 
             eclipse = {
               downloadSources = true,
@@ -116,7 +117,7 @@ return {
                 },
                 {
                   name = "JavaSE-17",
-                  path = "/Users/tmoore/.sdkman/candidates/java/17.0.9-zulu/zulu-17.jdk/Contents/Home",
+                  path = "/Users/tmoore/.sdkman/candidates/java/17.0.9.fx-zulu/zulu-17.jdk/Contents/Home",
                 },
               },
             },
