@@ -1,6 +1,21 @@
 return {
   "mfussenegger/nvim-jdtls",
   dependencies = { "folke/which-key.nvim" },
+  keys = {
+    { "<leader>jr", "<cmd>JdtRestart<cr>" },
+    {
+      "<leader>jc",
+      function()
+        require("jdtls").compile("incremental")
+      end,
+    },
+    {
+      "<leader>jC",
+      function()
+        require("jdtls").compile("full")
+      end,
+    },
+  },
   opts = function()
     return {
       -- How to find the root dir for a given filename. The default comes from
