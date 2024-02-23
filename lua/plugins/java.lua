@@ -2,18 +2,32 @@ return {
   "mfussenegger/nvim-jdtls",
   dependencies = { "folke/which-key.nvim" },
   keys = {
-    { "<leader>jr", "<cmd>JdtRestart<cr>" },
+    { "<leader>jr", "<cmd>JdtRestart<cr>", desc = "Restart JDTLS" },
     {
       "<leader>jc",
       function()
         require("jdtls").compile("incremental")
       end,
+      desc = "JDTLS compile",
     },
     {
       "<leader>jC",
       function()
         require("jdtls").compile("full")
       end,
+      desc = "JDTLS full compile",
+    },
+    {
+      "<leader>jw",
+      "<cmd>JdtWipeDataAndRestart<cr>",
+      desc = "JDTLS wipe and restart",
+    },
+    {
+      "<leader>jr",
+      function()
+        require("jdtls").set_runtime()
+      end,
+      desc = "JDTLS set runtime",
     },
   },
   opts = function()
@@ -101,8 +115,7 @@ return {
       jdtls = {
         settings = {
           java = {
-            home = "/Users/tmoore/.sdkman/candidates/java/11.0.21-zulu/zulu-11.jdk/Contents/Home",
-            -- path = "/Users/tmoore/.sdkman/candidates/java/11.0.21-zulu/zulu-11.jdk",
+            home = "/Users/tmoore/.sdkman/candidates/java/17.0.9.fx-zulu/zulu-17.jdk/Contents/Home",
 
             eclipse = {
               downloadSources = true,
@@ -133,6 +146,10 @@ return {
                 {
                   name = "JavaSE-17",
                   path = "/Users/tmoore/.sdkman/candidates/java/17.0.9.fx-zulu/zulu-17.jdk/Contents/Home",
+                },
+                {
+                  name = "JavaSE-1.8",
+                  path = "/Users/tmoore/.sdkman/candidates/java/8.0.392-zulu/zulu-8.jdk/Contents/Home",
                 },
               },
             },
