@@ -148,6 +148,10 @@ return {
                   path = "/Users/tmoore/.sdkman/candidates/java/17.0.9.fx-zulu/zulu-17.jdk/Contents/Home",
                 },
                 {
+                  name = "JavaSE-21",
+                  path = "/Users/tmoore/.sdkman/candidates/java/21.0.2-zulu/zulu-21.jdk/Contents/Home",
+                },
+                {
                   name = "JavaSE-1.8",
                   path = "/Users/tmoore/.sdkman/candidates/java/8.0.392-zulu/zulu-8.jdk/Contents/Home",
                 },

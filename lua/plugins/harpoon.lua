@@ -34,14 +34,14 @@ return {
         desc = "Harpoon second",
       },
       {
-        "<C-u>",
+        "<C-y>",
         function()
           harpoon:list():select(3)
         end,
         desc = "Harpoon thrid",
       },
       {
-        "<C-y>",
+        "<C-w>",
         function()
           harpoon:list():select(4)
         end,
