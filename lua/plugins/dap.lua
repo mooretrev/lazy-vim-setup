@@ -11,7 +11,9 @@ local function gsoServicePicker(opts)
       finder = finders.new_table({
         results = {
           "server gso-service/gso-service-oracle-xe.yml",
+          "server gso-service/gso-service-postgres.yml",
           "dbmigrate gso-service/gso-service-oracle-xe.yml",
+          "dbmigrate gso-service/gso-service-postgres.yml",
           "server gso-service/gso-service-rjqe.yml",
           "server gso-service/gso-service-ekpvqe.yml",
           "server gso-service/gso-service-nhqe2.yml",
