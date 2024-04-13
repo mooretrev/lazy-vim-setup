@@ -1,5 +1,7 @@
+PreviousCommand = ""
 return {
   "preservim/vimux",
+  lazy = false,
   keys = {
     {
 
@@ -13,9 +15,10 @@ return {
           cucumber_command
         )
         vim.cmd(command)
+        PreviousCommand = command
         print(cucumber_command)
       end,
-      desc = "Run nearest cucumber test",
+      desc = "Run nearest test",
       ft = "cucumber",
     },
     {
@@ -29,10 +32,30 @@ return {
           cucumber_command
         )
         vim.cmd(command)
+        PreviousCommand = command
         print(cucumber_command)
       end,
-      desc = "Run all cucumber tests",
+      desc = "Run all tests",
       ft = "cucumber",
+    },
+    {
+
+      "<leader>tp",
+      function()
+        vim.cmd(PreviousCommand)
+        print(PreviousCommand)
+      end,
+      desc = "Run previous test",
+    },
+    {
+
+      "<leader>r",
+      function()
+        require("dap").restart()
+        vim.cmd(PreviousCommand)
+        print(PreviousCommand)
+      end,
+      desc = "Run previous test",
     },
   },
 }

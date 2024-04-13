@@ -48,6 +48,42 @@ return {
         desc = "Harpoon fourth",
       },
       {
+        "<leader>1",
+        function()
+          harpoon:list():select(1)
+        end,
+        desc = "Harpoon first",
+      },
+      {
+        "<leader>2",
+        function()
+          harpoon:list():select(2)
+        end,
+        desc = "Harpoon second",
+      },
+      {
+        "<leader>3",
+        function()
+          harpoon:list():select(3)
+        end,
+        desc = "Harpoon thrid",
+      },
+      {
+        "<leader>4",
+        function()
+          harpoon:list():select(4)
+        end,
+        desc = "Harpoon fourth",
+      },
+      {
+        "<leader>5",
+        function()
+          harpoon:list():select(5)
+        end,
+        desc = "Harpoon fourth",
+      },
+
+      {
         "<leader>n",
         function()
           harpoon:list():next({ ui_nav_wrap = true })
