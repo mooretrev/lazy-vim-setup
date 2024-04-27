@@ -1,4 +1,10 @@
 PreviousCommand = ""
+local stopTestRunner = function()
+  vim.cmd("VimuxInterruptRunner")
+  vim.cmd("VimuxInterruptRunner")
+  vim.cmd("VimuxInterruptRunner")
+end
+
 return {
   "preservim/vimux",
   lazy = false,
@@ -14,6 +20,7 @@ return {
           'VimuxRunCommand("clear && cd /Users/tmoore/dev/gso-service/cucumber-tests && %s")',
           cucumber_command
         )
+        stopTestRunner()
         vim.cmd(command)
         PreviousCommand = command
         print(cucumber_command)
@@ -31,6 +38,7 @@ return {
           'VimuxRunCommand("clear && cd /Users/tmoore/dev/gso-service/cucumber-tests && %s")',
           cucumber_command
         )
+        stopTestRunner()
         vim.cmd(command)
         PreviousCommand = command
         print(cucumber_command)
@@ -42,6 +50,7 @@ return {
 
       "<leader>tp",
       function()
+        stopTestRunner()
         vim.cmd(PreviousCommand)
         print(PreviousCommand)
       end,
@@ -51,11 +60,24 @@ return {
 
       "<leader>r",
       function()
-        require("dap").restart()
+        local session = require("dap").session()
+        if session == nil then
+          require("dap").continue()
+        else
+          require("dap").restart()
+        end
         vim.cmd(PreviousCommand)
         print(PreviousCommand)
       end,
       desc = "Run previous test",
+    },
+    {
+
+      "<leader>tc",
+      function()
+        stopTestRunner()
+      end,
+      desc = "Cancel test runner command",
     },
   },
 }
