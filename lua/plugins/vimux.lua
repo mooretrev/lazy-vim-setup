@@ -47,6 +47,26 @@ return {
       ft = "cucumber",
     },
     {
+      "<leader>tt",
+      function()
+        local command = 'VimuxRunCommand("clear; cd /Users/tmoore/dev/gso-ui; nvm use 12; npm run test")'
+        stopTestRunner()
+        vim.cmd(command)
+      end,
+      desc = "npm test",
+      ft = { "javascript", "typescript", "javascript-react", "typescript-react" },
+    },
+    {
+      "<leader>tr",
+      function()
+        local command = 'VimuxRunCommand("clear; cd /Users/tmoore/dev/gso-ui; nvm use 12; npm run component")'
+        stopTestRunner()
+        vim.cmd(command)
+      end,
+      desc = "Open cypress",
+      ft = { "javascript", "typescript", "javascript-react", "typescript-react" },
+    },
+    {
 
       "<leader>tp",
       function()

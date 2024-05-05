@@ -63,3 +63,5 @@ function StartLazygit()
 end
 
 vim.api.nvim_set_keymap("n", "<leader>gg", [[<Cmd>lua StartLazygit()<CR>]], { noremap = true, silent = true })
+
+vim.keymap.set("n", "<C-a>", "ggVG")

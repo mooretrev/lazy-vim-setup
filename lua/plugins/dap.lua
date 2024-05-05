@@ -18,6 +18,7 @@ local function gsoServicePicker(opts)
           "server gso-service/gso-service-ekpvqe.yml",
           "server gso-service/gso-service-nhqe2.yml",
           "server gso-service/gso-service-jlqe2.yml",
+          "server gso-service/gso-service-tkqe3.yml",
         },
       }),
       sorter = conf.generic_sorter(opts),
@@ -49,6 +50,13 @@ return {
         gsoServicePicker(opts)
       end,
       desc = "Run with Args",
+    },
+    {
+      "<leader>dr",
+      function()
+        require("dap").restart()
+      end,
+      desc = "Restart DAP",
     },
   },
 }
