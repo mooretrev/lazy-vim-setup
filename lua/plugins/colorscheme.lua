@@ -13,7 +13,12 @@ return {
     lazy = true,
     name = "catppuccin",
     opts = {
-      flavour = "frappe", -- latte, frappe, macchiato, mocha
+      custom_highlights = function(colors)
+        return {
+          CursorLineNr = { fg = colors.flamingo },
+        }
+      end,
+      flavour = "mocha", -- latte, frappe, macchiato, mocha
       transparent_background = true,
 
       -- dim_inactive = {
