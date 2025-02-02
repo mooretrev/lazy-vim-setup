@@ -1,3 +1,4 @@
+local dap_console_open = false
 return {
   "rcarriga/nvim-dap-ui",
   opts = {
@@ -38,6 +39,28 @@ return {
         position = "bottom",
         size = 30,
       },
+    },
+  },
+  keys = {
+    {
+      "<leader>dU",
+      function()
+        if dap_console_open then
+          require("dapui").close({ layout = 2 })
+          dap_console_open = false
+        else
+          require("dapui").open({ layout = 2 })
+          dap_console_open = true
+        end
+      end,
+      desc = "DAP UI Console",
+    },
+    {
+      "<leader>dB",
+      function()
+        require("dap").set_breakpoint(nil, vim.fn.input("Breakpoint hit condition: "))
+      end,
+      desc = "Breakpoint Hit Condition",
     },
   },
   config = function(_, opts)

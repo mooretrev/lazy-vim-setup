@@ -4,22 +4,47 @@ local conf = require("telescope.config").values
 local actions = require("telescope.actions")
 local action_state = require("telescope.actions.state")
 
+local function isGsoServiceOpen()
+  return string.find(vim.fn.getcwd(), "gso%-service")
+end
+
+local function getOptions()
+  local gso_service_options = {
+    "server /users/tmoore/dev/gso-service.git/configs/gso-service-local-postgres.yml",
+    "dbmigrate /users/tmoore/dev/gso-service.git/configs/gso-service-local-postgres.yml",
+    "server /users/tmoore/dev/gso-service.git/configs/gso-service-local-postgres-logging.yml",
+    "server /users/tmoore/dev/gso-service.git/configs/gso-service-local-postgres-tk-gateway.yml",
+    "server /users/tmoore/dev/gso-service.git/configs/gso-service-local-postgres-live-tk.yml",
+    "server /users/tmoore/dev/gso-service.git/configs/gso-service-local-postgres-master.yml",
+    "server /users/tmoore/dev/gso-service.git/configs/gso-service-local-postgres-jms-cache.yml",
+    "dbmigrate /users/tmoore/dev/gso-service.git/configs/gso-service-local-postgres-master.yml",
+    "server /users/tmoore/dev/gso-service.git/configs/gso-service-tkqe3.yml",
+    "server /users/tmoore/dev/gso-service.git/configs/gso-service-rjqe.yml",
+    "server /users/tmoore/dev/gso-service.git/configs/gso-service-tkqe.yml",
+    "server /users/tmoore/dev/gso-service.git/configs/gso-service-jlqe2.yml",
+    "server /users/tmoore/dev/gso-service.git/configs/gso-service-.yml",
+    "server /users/tmoore/dev/gso-service.git/configs/gso-service-prpvqe.yml",
+    "server /users/tmoore/dev/gso-service.git/configs/gso-service-nhqe2.yml",
+    "server /users/tmoore/dev/gso-service.git/configs/gso-service-ekpvqe.yml",
+  }
+
+  local retail_payment_options = {
+    "-Dspring.profiles.active=local",
+  }
+
+  if isGsoServiceOpen() then
+    return gso_service_options
+  else
+    return retail_payment_options
+  end
+end
+
 local function gsoServicePicker(opts)
   pickers
     .new(opts, {
       prompt_title = "gso service run configurations",
       finder = finders.new_table({
-        results = {
-          "server gso-service/gso-service-oracle-xe.yml",
-          "server gso-service/gso-service-postgres.yml",
-          "dbmigrate gso-service/gso-service-oracle-xe.yml",
-          "dbmigrate gso-service/gso-service-postgres.yml",
-          "server gso-service/gso-service-rjqe.yml",
-          "server gso-service/gso-service-ekpvqe.yml",
-          "server gso-service/gso-service-nhqe2.yml",
-          "server gso-service/gso-service-jlqe2.yml",
-          "server gso-service/gso-service-tkqe3.yml",
-        },
+        results = getOptions(),
       }),
       sorter = conf.generic_sorter(opts),
       attach_mappings = function(prompt_bufnr, map)
@@ -27,12 +52,21 @@ local function gsoServicePicker(opts)
           actions.close(prompt_bufnr)
           local selection = action_state.get_selected_entry()
           print(selection[1])
-          require("dap").continue({
-            before = function(config)
-              config.args = selection[1]
-              return config
-            end,
-          })
+          if isGsoServiceOpen() then
+            require("dap").continue({
+              before = function(config)
+                config.args = selection[1]
+                return config
+              end,
+            })
+          else
+            require("dap").continue({
+              before = function(config)
+                config.vmArgs = selection[1]
+                return config
+              end,
+            })
+          end
         end)
         return true
       end,

@@ -15,9 +15,24 @@ return {
     },
     { "<leader>gs", false },
     { "<leader>/", false },
-    { "<leader>fr", "<cmd> Telescope resume <CR>", desc = "Resume search" },
+    {
+      "<leader>fw",
+      function()
+        require("telescope").extensions.git_worktree.git_worktrees()
+      end,
+      desc = "Git worktrees",
+    },
+    {
+      "<leader>fW",
+      function()
+        require("telescope").extensions.git_worktree.create_git_worktree()
+      end,
+      desc = "Create git worktree",
+    },
   },
   opts = function(_, opts)
+    require("git-worktree").setup()
+    require("telescope").load_extension("git_worktree")
     opts.defaults = vim.tbl_deep_extend("force", opts.defaults or {}, {
       sorting_strategy = "ascending",
       layout_strategy = "horizontal",

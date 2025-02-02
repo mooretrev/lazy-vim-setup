@@ -13,13 +13,12 @@ return {
 
       "<leader>tr",
       function()
+        local working_dir = vim.fn.getcwd()
         local filename = vim.api.nvim_buf_get_name(0)
         local line_number = vim.api.nvim_win_get_cursor(0)[1]
-        local cucumber_command = string.format("cucumber %s -l %s", filename, line_number)
-        local command = string.format(
-          'VimuxRunCommand("clear && cd /Users/tmoore/dev/gso-service/cucumber-tests && %s")',
-          cucumber_command
-        )
+        local cucumber_command = string.format("cucumber %s -l %s -f progress", filename, line_number)
+        local command =
+          string.format('VimuxRunCommand("clear && cd %s/cucumber-tests && %s")', working_dir, cucumber_command)
         stopTestRunner()
         vim.cmd(command)
         PreviousCommand = command
@@ -32,12 +31,11 @@ return {
 
       "<leader>tt",
       function()
+        local working_dir = vim.fn.getcwd()
         local filename = vim.api.nvim_buf_get_name(0)
-        local cucumber_command = string.format("cucumber %s", filename)
-        local command = string.format(
-          'VimuxRunCommand("clear && cd /Users/tmoore/dev/gso-service/cucumber-tests && %s")',
-          cucumber_command
-        )
+        local cucumber_command = string.format("cucumber %s -f progress", filename)
+        local command =
+          string.format('VimuxRunCommand("clear && cd %s/cucumber-tests && %s")', working_dir, cucumber_command)
         stopTestRunner()
         vim.cmd(command)
         PreviousCommand = command
@@ -75,11 +73,13 @@ return {
         print(PreviousCommand)
       end,
       desc = "Run previous test",
+      ft = { "javascript", "typescript", "javascript-react", "typescript-react", "java", "cucumber" },
     },
     {
 
       "<leader>r",
       function()
+        stopTestRunner()
         local session = require("dap").session()
         if session == nil then
           require("dap").continue()
@@ -98,6 +98,24 @@ return {
         stopTestRunner()
       end,
       desc = "Cancel test runner command",
+    },
+    {
+
+      "<leader>tC",
+      function()
+        vim.cmd("VimuxCloseRunner")
+      end,
+      desc = "Cancel test runner command",
+    },
+    {
+      "<leader>to",
+      function()
+        local working_dir = vim.fn.getcwd()
+        local command = string.format('VimuxRunCommand("clear && cd %s")', working_dir)
+        vim.cmd(command)
+        print(command)
+      end,
+      desc = "Open Terminal",
     },
   },
 }

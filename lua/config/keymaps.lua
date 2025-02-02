@@ -1,7 +1,7 @@
 -- Keymaps are automatically loaded on the VeryLazy event
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 -- Add any additional keymaps here
-vim.keymap.set("x", "<leader>p", [["_dP]])
+vim.keymap.set({ "n", "v", "x" }, "<leader>p", [["_dP]], { desc = "Repeat pasting" })
 
 local Util = require("lazyvim.util")
 
@@ -64,4 +64,26 @@ end
 
 vim.api.nvim_set_keymap("n", "<leader>gg", [[<Cmd>lua StartLazygit()<CR>]], { noremap = true, silent = true })
 
+vim.keymap.set("n", "<c-/>", "", { remap = true })
+
 vim.keymap.set("n", "<C-a>", "ggVG")
+vim.keymap.set("n", "<leader>u2", ":set ts=2 sw=2<CR>")
+vim.keymap.set("n", "<leader>u4", ":set ts=4 sw=4<CR>")
+vim.keymap.set("n", "<leader>tr", ":%s/\\n/\r/g<CR>")
+vim.keymap.set("n", "<leader>ts", "o@temp<CR>Scenario: temp<ESC>")
+vim.keymap.set("n", "<leader>td", "?@temp<CR>dddd")
+vim.keymap.set("n", "<leader>jf", function()
+  vim.api.nvim_exec2("%s/\\n/", {})
+  LazyVim.format({ force = true })
+end, { desc = "Fix JSON" })
+vim.keymap.set("n", "<leader>qf", ":cfirst<CR>", { desc = "[Q]uickfix [F]irst" })
+vim.keymap.set("n", "<leader>ql", ":clast<CR>", { desc = "[Q]uickfix [L]ast" })
+vim.keymap.set("n", "<leader>qo", ":copen<CR>", { desc = "[Q]uickfix [O]pen" })
+vim.keymap.set("n", "<leader>qc", ":cclose<CR>", { desc = "[Q]uickfix [C]lose" })
+vim.keymap.set("n", "<leader>qn", function()
+  vim.ui.input({ prompt = "Enter value cnext: " }, function(input)
+    local jump = tonumber(input)
+    local command = "cnext " .. jump
+    vim.cmd(command)
+  end)
+end, { desc = "[Q]uickfix [N]ext" })

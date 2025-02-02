@@ -1,5 +1,6 @@
 return {
   "hrsh7th/nvim-cmp",
+  disabled = true,
   opts = function(_, opts)
     local cmp = require("cmp")
     local luasnip = require("luasnip")

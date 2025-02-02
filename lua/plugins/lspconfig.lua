@@ -3,6 +3,7 @@ return {
   init = function()
     local keys = require("lazyvim.plugins.lsp.keymaps").get()
     keys[#keys + 1] = { "gr", "<cmd>Telescope lsp_references show_line=false<cr>", desc = "References" }
+    keys[#keys + 1] = { "gI", "<cmd>Telescope lsp_implementations show_line=false<cr>", desc = "References" }
   end,
   opts = {
     servers = {
